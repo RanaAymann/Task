@@ -18,8 +18,19 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.converter.gson.GsonConverterFactory;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 
 public class MainActivity extends AppCompatActivity {
+    Toolbar toolbar;
+    RecyclerView recyclerView;
+
+    UsersAdapter usersAdapter;
 
     int cacheSize = 10 * 1024 * 1024;
     
