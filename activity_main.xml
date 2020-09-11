@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
-    android:padding="8dp"
     tools:context=".MainActivity">
-    <android.support.v4.widget.NestedScrollView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-<Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button1" />
-
+        android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/view_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000" />
-    </android.support.v4.widget.NestedScrollView>
-</android.support.constraint.ConstraintLayout>
+            android:layout_width="match_parent"
+            android:text="Users List"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+    </androidx.appcompat.widget.Toolbar>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:background="@drawable/recyclerview_bg"
+    android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>
+
+  </LinearLayout>
