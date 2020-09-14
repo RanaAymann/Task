@@ -27,6 +27,15 @@
     android:layout_marginStart="60dp"
     android:textColor="@color/headerColor"
     android:layout_height="wrap_content" />
+    
+    <ImageView
+        android:id="@+id/imageMore"
+        android:layout_width="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_navigate_next_black_24dp"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
 </LinearLayout>
