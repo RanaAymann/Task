@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
         userlist.enqueue(new Callback<List<Todos>>() {
             @Override
-            public void onResponse(Call<List<Todos>> call, Response<List<Todos>> response) {
+            public void Todos(Call<List<Todos>> call, Response<List<Todos>> response) {
 
                 if(response.isSuccessful()){
-                 List<Todos> userResponses = response.body();
-                 usersAdapter.setData(userResponses);
+                 List<Todos> Todos = response.body();
+                 usersAdapter.setData(Todos);
                  recyclerView.setAdapter(usersAdapter);
 
                 }
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void ClickedUser(UserResponse userResponse) {
+    public void ClickedUser(ToDos todos) {
 
         startActivity(new Intent(this,UserDetailsActivity.class).putExtra("data",Todos));
 
