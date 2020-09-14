@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterVH> {
 
-    private List<UserResponse> userResponseList;
+    private List<Todos> userResponseList;
     private Context context;
     private ClickedItem clickedItem;
 
@@ -22,8 +22,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
         this.clickedItem = clickedItem;
     }
 
-    public void setData(List<UserResponse> userResponseList) {
-        this.userResponseList = userResponseList;
+    public void setData(List<Todos> userTodos) {
+        this.userTodos = userTodos;
         notifyDataSetChanged();
     }
 
@@ -37,9 +37,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
     @Override
     public void onBindViewHolder(@NonNull UserAdapterVH holder, int position) {
 
-        UserResponse userResponse = userResponseList.get(position);
+        ToDos Todos = ToDosList.get(position);
 
-        String userId = userResponse.getUserId();
+        String userId = Todos.getUserId();
         String prefix;
         if(userResponse.isIs_active()){
             prefix = "A";
@@ -52,19 +52,19 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
         holder.imageMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickedItem.ClickedUser(userResponse);
+                clickedItem.ClickedUser(Todos);
             }
         });
 
     }
 
     public interface ClickedItem{
-        public void ClickedUser(UserResponse userResponse);
+        public void ClickedUser(ToDos Todos);
     }
 
     @Override
     public int getItemCount() {
-        return userResponseList.size();
+        return userTodos.size();
     }
 
     public class UserAdapterVH extends RecyclerView.ViewHolder {
