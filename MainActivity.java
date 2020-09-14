@@ -109,3 +109,21 @@ Cache cache = new Cache(getCacheDir(), cacheSize);
 
             Retrofit retrofit = builder.build();
             Service apiService = retrofit.create(Service.class);
+
+    
+    recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerAdapter = new RecyclerAdapter(getApplicationContext(),Todos);
+        recyclerView.setAdapter(recyclerAdapter);
+
+        JsonPlaceHolderAPi apiService = ApiClient.getClient().create(JsonPlaceHolderAPi.class);
+        Call<List<Todos>> call = apiService.getTodos();
+
+        call.enqueue(new Callback<ListTodos>>() {
+            @Override
+            public void onResponse(Call<List<Todos>> call, Response<List<Todos>> response) {
+                Todos = response.body();
+                Log.d("ID","Response = "+Todos);
+                recyclerAdapter.setTodos(Todos);
+            }
