@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getAllUsers(){
 
-        Call<List<Todos>> userlist = ApiClient.getUserService().getAllUsers();
+        Call<List<Todos>> userlist = ApiClient.getJsonPlaceHolderAPi().getAllUsers();
 
         userlist.enqueue(new Callback<List<Todos>>() {
             @Override
