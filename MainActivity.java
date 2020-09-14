@@ -34,21 +34,61 @@ public class MainActivity extends AppCompatActivity {
 
     int cacheSize = 10 * 1024 * 1024;
     
-    ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
     
     private TextView textViewResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textViewResult = findViewById(R.id.view_result);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<List<Todos>> call = jsonPlaceHolderApi.getTodos();
-        call.enqueue(new Callback<List<Todos>>() {
+
+        toolbar = findViewById(R.id.toolbar);
+        recyclerView = findViewById(R.id.recyclerview);
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+
+        usersAdapter = new UsersAdapter(this::ClickedUser);
+
+        getAllUsers();
+
+
+
+
+    }
+
+    public void getAllUsers(){
+
+        Call<List<Todos>> userlist = ApiClient.getUserService().getAllUsers();
+
+        userlist.enqueue(new Callback<List<Todos>>() {
+            @Override
+            public void onResponse(Call<List<Todos>> call, Response<List<Todos>> response) {
+
+                if(response.isSuccessful()){
+                 List<Todos> userResponses = response.body();
+                 usersAdapter.setData(userResponses);
+                 recyclerView.setAdapter(usersAdapter);
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Todos>> call, Throwable t) {
+                Log.e("failure",t.getLocalizedMessage());
+
+            }
+        });
+    }
+
+    @Override
+    public void ClickedUser(UserResponse userResponse) {
+
+        startActivity(new Intent(this,UserDetailsActivity.class).putExtra("data",Todos));
+
+    }
+}
             @Override
             public void onResponse(Call<List<Todos>> call, Response<List<Todos>> response) {
                 if (!response.isSuccessful()) {
