@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     int cacheSize = 10 * 1024 * 1024;
     
+    ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+    
     private TextView textViewResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
